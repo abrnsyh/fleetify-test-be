@@ -11,7 +11,6 @@ use Illuminate\Support\Str;
 
 class LoginController extends BaseController
 {
-    //
     public function login(Request $request)
     {
         $this->checkTooManyFailedAttempts();
