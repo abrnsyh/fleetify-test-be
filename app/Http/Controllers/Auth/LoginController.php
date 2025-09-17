@@ -35,7 +35,10 @@ class LoginController extends BaseController
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
 
         return $this->sendResponse('Logout Berhasil', []);
     }
