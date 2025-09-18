@@ -7,12 +7,18 @@ API untuk manajemen absensi, karyawan, dan departemen.
 1. Clone repo ini.
 2. Jalankan `composer install`
 3. Copy `.env.example` ke `.env` dan sesuaikan konfigurasi database.
-4. Jangan lupa rubah SESSION_DOMAIN di .env sesuai domain lokal Anda, misal: `SESSION_DOMAIN=localhost`
-5. Jalankan migrasi:  
+4. Jangan lupa rubah SESSION_DOMAIN di .env sesuai domain lokal Anda, misal: `SESSION_DOMAIN=localhost` (tanpa port)
+5. Rubah konfigurasi `SANCTUM_STATEFUL_DOMAINS` di .env sesuai domain frontend Anda, misal: `SANCTUM_STATEFUL_DOMAINS=localhost:3000`
+6. Rubah konfigurasi `CORS_ALLOWED_ORIGINS` di .env sesuai domain frontend Anda, misal: `CORS_ALLOWED_ORIGINS=http://localhost:3000`
+6. Generate app key:  
+   ```
+   php artisan key:generate
+   ```
+7. Jalankan migrasi:  
    ```
    php artisan migrate --seed
    ```
-6. Jalankan server:  
+8. Jalankan server:  
    ```
    php artisan serve
    ```
