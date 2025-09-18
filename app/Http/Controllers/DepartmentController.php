@@ -44,7 +44,7 @@ class DepartmentController extends BaseController
 
     }
 
-    public function update(Request $request,string $id)
+    public function update(Request $request, string $id)
     {
         $request->validate([
             'department_name' => 'sometimes|required|string|max:255|unique:departments,department_name,'.$id,
@@ -62,7 +62,7 @@ class DepartmentController extends BaseController
         }
     }
 
-    public function destroy(Request $request,string $id)
+    public function destroy(Request $request, string $id)
     {
         try {
             $department = Department::findOrFail($id);
@@ -72,5 +72,12 @@ class DepartmentController extends BaseController
         } catch (\Exception $e) {
             return $this->sendError('Error deleting department', $e->getMessage(), 500);
         }
+    }
+
+    public function options(Request $request)
+    {
+        $departments = Department::all(['id', 'department_name']);
+
+        return $this->sendResponse('success', $departments);
     }
 }

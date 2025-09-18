@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('departments', function (Blueprint $table) {
+        Schema::create('employees', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('department_name');
-            $table->time('max_clock_in_time');
-            $table->time('max_clock_out_time');
+            $table->foreignUuid('department_id')->constrained('departments')->onDelete('cascade');
+            $table->unsignedBigInteger('employee_id')->unique()->check('employee_id <= 99999999999');
+            $table->string('name', 255);
+            $table->text('address');
             $table->timestamps();
         });
+
     }
 
     /**
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('departments');
+        Schema::dropIfExists('employees');
     }
 };
