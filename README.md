@@ -68,7 +68,4 @@ API untuk manajemen absensi, karyawan, dan departemen.
 ### Autentikasi
 
 - Endpoint selain `/login`, `/clock-in`, dan `/clock-out` membutuhkan autentikasi Sanctum.
-- Kirim token di header:
-  ```
-  Authorization: Bearer {token}
-  ```
+- Auth menggunakan sanctum jadi dari frontend tidak butuh mengirimkan auth token di header.
